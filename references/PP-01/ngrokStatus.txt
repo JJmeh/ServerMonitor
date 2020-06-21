@@ -1,0 +1,3 @@
+11525 pts/0    00:01:39 ngrok
+12980 pts/1    00:00:31 ngrok
+23093 pts/2    00:00:00 ngrokStatus.sh
