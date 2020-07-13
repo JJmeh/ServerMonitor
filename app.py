@@ -18,16 +18,17 @@ scopes = [
 
 # Authenticate a credential with the service account
 credentials = service_account.Credentials.from_service_account_file(
-    "serviceAccountKey.json", scopes=scopes)
+    "serviceAccountKey.json", scopes=scopes) #download the service account in firebase page, reference to firebase doc
 
 # Use the credentials object to authenticate a Requests session.
 authed_session = AuthorizedSession(credentials)
 
-#response = authed_session.get("https://nyxserver-bb04f.firebaseio.com/monitor.json")
+#response = authed_session.get("") // put server address here..
 
 #testvar = json.loads(response.text)
 #print(testvar)
 
+serverAddr = "" #put server addr here
 
 loop = True
 
@@ -69,5 +70,5 @@ while loop:
     print(cpuTemp, cpuPercentage, storagePercent, batteryStatus)
     data = {"temp": int(cpuTemp), "cpu": float(cpuPercentage), "batStatus": batteryStatus, "storage": float(storagePercent)}
     data = json.dumps(data)
-    print(authed_session.patch("https://nyxserver-bb04f.firebaseio.com/monitor.json", data=data))
+    print(authed_session.patch(serverAddr, data=data))
     time.sleep(150) #change into 5 minute after finish
